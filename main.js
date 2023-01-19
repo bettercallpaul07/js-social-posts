@@ -83,10 +83,6 @@ const posts = [
     }
 ];
 
-const {id, content, media, name, image, likes, created} = posts;
-console.log(posts);
-
-
 
 
 
@@ -126,3 +122,39 @@ posts.forEach((arrayEl) => {
 
 
 })
+
+const likedPosts = [];
+
+const allLikeButtons = document.querySelectorAll(".js-like-button");
+
+allLikeButtons.forEach((singleButton, i) => {
+
+    singleButton.addEventListener("click", 
+    
+    function(event) {
+
+        event.preventDefault();
+
+        const postId = this.getAttribute("data-postid");
+
+        if(!likedPosts.includes(postId)) {
+
+            this.classList.add("like-button--liked");
+
+
+            const likesCounter = document.getElementById("like-counter-" + postId);
+
+            let likes = parseInt(likesCounter.innerText);
+            likes = likes +1;
+
+            likesCounter.innerHTML = likes;
+
+            likedPosts.push(postId);
+        }
+
+    });
+
+
+
+
+});
